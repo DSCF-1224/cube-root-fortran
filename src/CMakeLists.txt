@@ -1,0 +1,10 @@
+add_library(
+    _cube_root_lib
+    STATIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/imp_cbrt.f90
+    ${CMAKE_CURRENT_SOURCE_DIR}/imp_cbrt0.f90
+    ${CMAKE_CURRENT_SOURCE_DIR}/imp_cbrt1.f90
+    ${CMAKE_CURRENT_SOURCE_DIR}/imp_cbrt2.f90
+    ${CMAKE_CURRENT_SOURCE_DIR}/imp_divide_by_3.f90
+    ${CMAKE_CURRENT_SOURCE_DIR}/main.f90
+)
