@@ -18,10 +18,6 @@ program test_cube_root_lib
     !! A variable for this PROGRAM
     !! The test value to compute cube root
 
-    complex(SIZE_FLT) :: result
-    !! A variable for this PROGRAM
-    !! to receive the computed cube root
-
 
 
     integer :: iter
@@ -38,10 +34,35 @@ program test_cube_root_lib
 
         test_input = 8 * exp( cmplx( 0, MATH_PI_DEF / 4 * iter, SIZE_FLT ) )
 
-        result = cbrt0(test_input); write(unit=OUTPUT_UNIT, fmt='(   "(",F20.16,",",F20.16,")")', advance='no' ) result%re, result%im
-        result = cbrt1(test_input); write(unit=OUTPUT_UNIT, fmt='(1X,"(",F20.16,",",F20.16,")")', advance='no' ) result%re, result%im
-        result = cbrt2(test_input); write(unit=OUTPUT_UNIT, fmt='(1X,"(",F20.16,",",F20.16,")")', advance='yes') result%re, result%im 
+        call show_result( test_input, cbrt0(test_input) )
+        call show_result( test_input, cbrt1(test_input) )
+        call show_result( test_input, cbrt2(test_input) )
 
     end do
+
+
+
+    contains
+
+
+
+    subroutine show_result(dummy_test_input, dummy_result)
+
+        complex(SIZE_FLT), intent(in) :: dummy_test_input
+        complex(SIZE_FLT), intent(in) :: dummy_result
+
+        complex(SIZE_FLT) :: dummy_result_pow3
+
+        dummy_result_pow3 = dummy_result &!
+        &                 * dummy_result &!
+        &                 * dummy_result
+
+        write(unit=OUTPUT_UNIT, fmt='(*(F21.16))') &!
+            dummy_result%re                            , &!
+            dummy_result%im                            , &!
+            dummy_result_pow3%re - dummy_test_input%re , &!
+            dummy_result_pow3%im - dummy_test_input%im
+
+    end subroutine
 
 end program
