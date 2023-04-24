@@ -29,14 +29,16 @@ program test_cube_root_lib
 
     print * , cbrt(   8.0_SIZE_FLT )
     print * , cbrt( - 8.0_SIZE_FLT )
+    print * ! BLANK_LINE
 
     do iter = 0, 8
 
         test_input = 8 * exp( cmplx( 0, MATH_PI_DEF / 4 * iter, SIZE_FLT ) )
 
-        call show_result( test_input, cbrt0(test_input) )
-        call show_result( test_input, cbrt1(test_input) )
-        call show_result( test_input, cbrt2(test_input) )
+        call show_result_scalar( test_input, cbrt0(test_input) )
+        call show_result_scalar( test_input, cbrt1(test_input) )
+        call show_result_scalar( test_input, cbrt2(test_input) )
+        call show_result_vector( test_input, cbrt3(test_input) )
 
     end do
 
@@ -46,7 +48,7 @@ program test_cube_root_lib
 
 
 
-    subroutine show_result(dummy_test_input, dummy_result)
+    subroutine show_result_scalar(dummy_test_input, dummy_result)
 
         complex(SIZE_FLT), intent(in) :: dummy_test_input
         complex(SIZE_FLT), intent(in) :: dummy_result
@@ -62,6 +64,21 @@ program test_cube_root_lib
             dummy_result%im                            , &!
             dummy_result_pow3%re - dummy_test_input%re , &!
             dummy_result_pow3%im - dummy_test_input%im
+
+    end subroutine
+
+
+
+    subroutine show_result_vector(dummy_test_input, dummy_result)
+
+        complex(SIZE_FLT), intent(in) :: dummy_test_input
+        complex(SIZE_FLT), intent(in) :: dummy_result(3)
+
+        call show_result_scalar( dummy_test_input, dummy_result(1) )
+        call show_result_scalar( dummy_test_input, dummy_result(2) )
+        call show_result_scalar( dummy_test_input, dummy_result(3) )
+
+        write(unit=OUTPUT_UNIT, fmt=*) ! BLANK_LINE
 
     end subroutine
 

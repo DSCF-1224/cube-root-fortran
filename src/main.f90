@@ -13,6 +13,7 @@ module cube_root_lib
     public  :: cbrt0
     public  :: cbrt1
     public  :: cbrt2
+    public  :: cbrt3
 
 
 
@@ -224,6 +225,66 @@ module cube_root_lib
             !! The target value to calculate the cube root
 
             complex(REAL64) :: cube_root
+            !! The return value of this FUNCTION
+            !! The calculated cube root
+
+        end function
+
+    end interface
+
+
+
+    interface cbrt3
+
+        module pure function cbrt3_COMPLEX32(z) result(cube_root)
+
+            complex(REAL32), intent(in) :: z
+            !! A dummy argument for this FUNCTION
+            !! The target value to calculate the cube root
+
+            complex(REAL32) :: cube_root(3)
+            !! The return value of this FUNCTION
+            !! The calculated cube root
+
+        end function
+
+
+
+        module pure function cbrt3_COMPLEX64(z) result(cube_root)
+
+            complex(REAL64), intent(in) :: z
+            !! A dummy argument for this FUNCTION
+            !! The target value to calculate the cube root
+
+            complex(REAL64) :: cube_root(3)
+            !! The return value of this FUNCTION
+            !! The calculated cube root
+
+        end function
+
+
+
+        module pure function cbrt3_REAL32(x) result(cube_root)
+
+            real(REAL32), intent(in) :: x
+            !! A dummy argument for this FUNCTION
+            !! The target value to calculate the cube root
+
+            complex(REAL32) :: cube_root(3)
+            !! The return value of this FUNCTION
+            !! The calculated cube root
+
+        end function
+
+
+
+        module pure function cbrt3_REAL64(x) result(cube_root)
+
+            real(REAL64), intent(in) :: x
+            !! A dummy argument for this FUNCTION
+            !! The target value to calculate the cube root
+
+            complex(REAL64) :: cube_root(3)
             !! The return value of this FUNCTION
             !! The calculated cube root
 
