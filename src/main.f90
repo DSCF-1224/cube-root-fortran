@@ -19,18 +19,6 @@ module cube_root_lib
     real(REAL32), parameter, private :: FRAC_1_3_REAL32 = 1 / 3.0_REAL32
     real(REAL64), parameter, private :: FRAC_1_3_REAL64 = 1 / 3.0_REAL64
 
-    real(REAL32), parameter, private :: MATH_PI_REAL32 = acos(-1.0_REAL32)
-    real(REAL64), parameter, private :: MATH_PI_REAL64 = acos(-1.0_REAL64)
-
-    real(REAL32), parameter, private :: FRAC_2PI_3_REAL32 = 2 * MATH_PI_REAL32 / 3
-    real(REAL64), parameter, private :: FRAC_2PI_3_REAL64 = 2 * MATH_PI_REAL64 / 3
-
-    complex(REAL32), parameter, private :: COEF_ROTATION_120DEG_POS_REAL32 = exp( cmplx( x=0.0_REAL32, y=FRAC_2PI_3_REAL32, kind=REAL32 ) )
-    complex(REAL64), parameter, private :: COEF_ROTATION_120DEG_POS_REAL64 = exp( cmplx( x=0.0_REAL64, y=FRAC_2PI_3_REAL64, kind=REAL64 ) )
-
-    complex(REAL32), parameter, private :: COEF_ROTATION_120DEG_NEG_REAL32 = conjg(COEF_ROTATION_120DEG_POS_REAL32)
-    complex(REAL64), parameter, private :: COEF_ROTATION_120DEG_NEG_REAL64 = conjg(COEF_ROTATION_120DEG_POS_REAL64)
-
 
 
     interface cbrt
@@ -298,6 +286,70 @@ module cube_root_lib
             real(REAL64) :: x_divided
             !! The return value of this FUNCTION
             !! The divided value
+
+        end function
+
+    end interface
+
+
+
+    interface rotate_120deg_neg
+
+        module pure elemental function rotate_120deg_neg_COMPLEX32(z) result(z_rotated)
+
+            complex(REAL32), intent(in) :: z
+            !! A dummy argument for this FUNCTION
+            !! The target value to rotate
+
+            complex(REAL32) :: z_rotated
+            !! The return value of this FUNCTION
+            !! The rotated value
+
+        end function
+
+
+
+        module pure elemental function rotate_120deg_neg_COMPLEX64(z) result(z_rotated)
+
+            complex(REAL64), intent(in) :: z
+            !! A dummy argument for this FUNCTION
+            !! The target value to rotate
+
+            complex(REAL64) :: z_rotated
+            !! The return value of this FUNCTION
+            !! The rotated value
+
+        end function
+
+    end interface
+
+
+
+    interface rotate_120deg_pos
+
+        module pure elemental function rotate_120deg_pos_COMPLEX32(z) result(z_rotated)
+
+            complex(REAL32), intent(in) :: z
+            !! A dummy argument for this FUNCTION
+            !! The target value to rotate
+
+            complex(REAL32) :: z_rotated
+            !! The return value of this FUNCTION
+            !! The rotated value
+
+        end function
+
+
+
+        module pure elemental function rotate_120deg_pos_COMPLEX64(z) result(z_rotated)
+
+            complex(REAL64), intent(in) :: z
+            !! A dummy argument for this FUNCTION
+            !! The target value to rotate
+
+            complex(REAL64) :: z_rotated
+            !! The return value of this FUNCTION
+            !! The rotated value
 
         end function
 
